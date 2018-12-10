@@ -1,5 +1,5 @@
 //import latestTime from './latestTime';
-const latestTime = require('./latestTime');
+const latestTime = require('./LatestTime');
 
 // Increases Ganache time by the passed duration in seconds
 //export default
@@ -57,3 +57,9 @@ module.exports = {
     increaseTimeTo,
     duration
 }
+
+/* this syntax works as well
+module.exports.increaseTime = increaseTime;
+module.exports.increaseTimeTo = increaseTimeTo;
+module.exports.duration = duration;
+*/
