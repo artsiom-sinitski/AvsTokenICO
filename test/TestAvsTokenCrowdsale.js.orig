@@ -1,13 +1,8 @@
 //import ether from './helpers/Ether';
-/* Node.js uses CommonJS module syntax, otherwise will get compiler errors
- * so use the syntax below:
- */
+/* Node.js uses CommonJS module syntax, otherwise will get compiler errors*/
 const ether = require('./helpers/Ether');
 const EVMrevert = require('./helpers/EVMrevert');
 const BigNumber = web3.BigNumber;
-const latestTime = require('./helpers/LatestTime');
-const increaseTime = require('./helpers/IncreaseTime');
-
 
 require('chai')
   .use(require('chai-as-promised'))
@@ -32,7 +27,7 @@ contract('AvsTokenCrowdsale', function([_, wallet, investor1, investor2]) {
       this.decimals
     );
 
-    // Crowdsale CONFIG
+    // Crowdsale config
     this.rate = 500;
     this.wallet = wallet;
     this.cap = ether(100);
@@ -40,25 +35,16 @@ contract('AvsTokenCrowdsale', function([_, wallet, investor1, investor2]) {
     // Investor Min & Max caps
     this.investorMinCap = ether(0.002);
     this.investorMaxCap = ether(50);
-    
-    // Crowdsale time interval
-    this.openingTime = latestTime() + increaseTime.duration.weeks(1);
-    this.closingTime = this.openingTime + increaseTime.duration.weeks(1);
 
     this.crowdsale = await AvsTokenCrowdsale.new(
       this.rate,
       this.wallet,
       this.token.address,
-      this.cap,
-      this.openingTime,
-      this.closingTime
+      this.cap
     );
 
    // Transfer token ownership to crowdsale
-   await this.token.transferOwnership(this.crowdsale.address);
-
-   // Advance time to crowdsale start
-   await increaseTime.increaseTimeTo(this.openingTime + 1);
+    await this.token.transferOwnership(this.crowdsale.address);
   });
 
   describe('crowdsale', function() {
@@ -91,13 +77,6 @@ contract('AvsTokenCrowdsale', function([_, wallet, investor1, investor2]) {
     it('has correct hard cap', async function() {
       const cap = await this.crowdsale.cap();
       cap.should.be.bignumber.equal(this.cap);
-    });
-  });
-
-  describe('timed crowdsale', function() {
-    it('is open', async function() {
-      const isClosed = await this.crowdsale.hasClosed();
-      isClosed.should.be.false;
     });
   });
 
