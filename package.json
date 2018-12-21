@@ -1,8 +1,8 @@
 {
-  "name": "avstokenico",
+  "name": "avstokencrowdsale",
   "version": "1.0.0",
   "description": "Avs Token ICO",
-  "main": "truffle.js",
+  "main": "truffle-config.js",
   "directories": {
     "test": "test"
   },
