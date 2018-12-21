@@ -1,22 +1,22 @@
 //require('babel-register');
-require('babel-register')({
+/*require('babel-register')({
   ignore: /node_modules\/(?!zeppelin-solidity\/test\/helpers)/
-});
-require('babel-polyfill');
-require('dotenv').config();
-const HDWalletProvider = require('truffle-hdwallet-provider');
+}); */
+//require('babel-polyfill');
+//require('dotenv').config();
+//const HDWalletProvider = require('truffle-hdwallet-provider');
 
 module.exports = {
   networks: {
     development: {
       host: '127.0.0.1',
       port: 7545,
-      network_id: '*', // eslint-disable-line camelcase
+      network_id: '*' // eslint-disable-line camelcase
     },
     ganache: {
       host: 'localhost',
       port: 7545,
-      network_id: '*', // eslint-disable-line camelcase
+      network_id: '*' // eslint-disable-line camelcase
     },
     ropsten: {
       provider: function() {
