@@ -1,7 +1,7 @@
 const avsToken = artifacts.require("./AvsToken.sol");
 const avsTokenCrowdsale = artifacts.require("./AvsTokenCrowdsale.sol");
 
-const ether = (n) => new web3.BigNumber(web3.toWei(n, 'ether'));
+const ether = (n) => new web3.utils.BN(web3.utils.toWei(n.toString(), 'ether'));
 const duration = {
     seconds: function(val) { return val; },
     minutes: function(val) { return val * this.seconds(60); },
