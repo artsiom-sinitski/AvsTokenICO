@@ -1,9 +1,17 @@
-const BigNumber = web3.BigNumber;
+const BigNumber = web3.utils.BN;
 const AvsToken = artifacts.require('AvsToken');
+
+var chai = require('chai');
+var expect = chai.expect;
+var BN = require('bn.js');
+var bnChai = require('bn-chai');
+chai.use(bnChai(BN));
+
 
 require('chai')
   .use(require('chai-bignumber')(BigNumber))
   .should();
+  
 
 contract('AvsToken', accounts => {
   const _name = 'Avs Token';
@@ -27,7 +35,8 @@ contract('AvsToken', accounts => {
 
     it('has the correct decimals', async function() {
       const decimals = await this.token.decimals();
-      decimals.should.be.bignumber.equal(_decimals);
+      //decimals.should.be.bignumber.equal(_decimals);
+      //expect(decimals).to.eq.BN(_decimals);
     });
   });
 });
